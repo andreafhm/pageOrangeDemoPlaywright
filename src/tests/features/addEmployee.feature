@@ -4,7 +4,7 @@ Feature: Add Employee functionality
   Background:
     Given User is logged in
     And User navigates to the PIM section
-
+|
  Scenario Outline: Successfully adding a new employee
    When User navigates to the Add Employee tab
     And User fills in the mandatory fields with "<firstName>", "<lastName>", "<idEmployee>"
