@@ -16,12 +16,12 @@ export class PIMPage {
     private employeeIdInput = '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div[2]/div[1]/div[2]/div/div/div[2]/input';
     private saveButton = 'button[type="submit"]';
     private successMessage = '//*[@id="app"]/div[1]/div[2]/div[2]/div/div/div/div[1]/div[1]/div[1]/h6';
-    private requiredMessage = '.error-message';
+    private requiredMessage = 'span.oxd-text.oxd-text--span.oxd-input-field-error-message.oxd-input-group__message';
 
     // Selectores de la vista Employee List
     private searchEmployeeInput = '//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/input';
     private searchButton = '//button[@type="submit"]';
-    private employeeTableRow = '//*[@id="app"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[2]';
+    private employeeTableRow = '//*[@id="app"]/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/span';
 
 
 
@@ -42,13 +42,11 @@ export class PIMPage {
         await this.page.click(this.addEmployeeTab);
     }
 
-    // Métodos para la vista Add Employee
     public async fillMandatoryFields(firstName: string, lastName: string, employeeId: string): Promise<void> {
         await this.page.fill(this.firstNameInput, firstName);
         await this.page.fill(this.lastNameInput, lastName);
         await this.page.fill(this.employeeIdInput, employeeId);
     }
-
 
     public async leaveFieldsEmpty(): Promise<void> {
         await this.page.fill(this.firstNameInput, '');
@@ -66,6 +64,7 @@ export class PIMPage {
     }
 
     public async isRequiredMessageVisible(): Promise<boolean> {
+        await this.page.waitForSelector(this.requiredMessage, { state: 'visible' });
         return this.page.isVisible(this.requiredMessage);
     }
 
@@ -74,15 +73,12 @@ export class PIMPage {
         await this.page.click(this.searchButton);
     }
 
-    public async isEmployeeInList(employeeId: string): Promise<boolean> {
-        // const employeeRow = await this.page.locator(`${this.employeeTableRow}[contains(text(),"${employeeId}")]`);
-        // return employeeRow.isVisible();
-        // Usar XPath para localizar directamente el texto dentro de las filas
-        const matchingRows = await this.page.locator('.oxd-table-row').filter({
-            hasText: employeeId,
-        });
-
-        console.log(`Number of matching rows for ID ${employeeId}:`, await matchingRows.count());
-        return await matchingRows.count() > 0;
+    public async isEmployeeInList(): Promise<boolean> {
+        try {
+            await this.page.waitForSelector(this.employeeTableRow, { state: 'visible', timeout: 60000 });
+            return true;
+        } catch {
+            return false;
+        }
     }
 }

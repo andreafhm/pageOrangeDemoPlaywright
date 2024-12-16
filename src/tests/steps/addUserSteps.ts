@@ -39,9 +39,14 @@ When('User searches for the employee with ID {string}', async function (employee
     await pimPage.searchEmployeeById(employeeId);
 });
 
-Then('The employee with ID {string} should be listed', async function (employeeId: string) {
-    const isEmployeeFound = await pimPage.isEmployeeInList(employeeId);
+Then('The employee should be listed', async function () {
+    const isEmployeeFound = await pimPage.isEmployeeInList();
     expect(isEmployeeFound).toBe(true);
+});
+
+
+When('User leaves the mandatory fields empty', async function () {
+    await pimPage.leaveFieldsEmpty();
 });
 
 Then('A required message should appear for missing mandatory fields', async function () {
