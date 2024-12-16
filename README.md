@@ -84,7 +84,7 @@ El objetivo de este desafío es automatizar el proceso de creación de un nuevo 
 1. Clonar el repositorio desde GitHub:
    ```bash
    git clone https://github.com/andreafhm/pageOrangeDemoPlaywright.git
-   cd RetoPlaywright
+   cd pageOrangeDemoPlaywright
    ```
 2. Cambiar al branch correspondiente:
    ```bash
