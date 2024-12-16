@@ -77,7 +77,7 @@ El objetivo de este desafío es automatizar el proceso de creación de un nuevo 
 
 ### Requisitos Previos
 - Node.js versión 18 o superior.
-- np, versión 9 o superior.
+- npm versión 9 o superior.
 - Git instalado en el sistema.
 
 ### Pasos para la Instalación
