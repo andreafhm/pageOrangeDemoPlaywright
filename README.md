@@ -138,17 +138,17 @@ RetoPlaywright/
 
 ### Escenario 1: Inicio de Sesión Exitoso
 ```gherkin
-Given User is on the login page
-When User enters valid credentials
-And User clicks on the Login button
-Then User should be redirected to the dashboard
+Given User navigates to the OrangeHRM login page
+And User enter the credentials as "Admin", "admin123"
+When User click on the login button
+Then Login should be success
 ```
 ### Escenario 2: Inicio de Sesión Fallido
 ```gherkin
-Given User is on the login page
-When User enters invalid credentials
-And User clicks on the Login button
-Then An error message should appear indicating invalid credentials
+Given User navigates to the OrangeHRM login page
+And User enter the credentials as "InvalidUsername", "InvalidPassword"
+When User click on the login button
+Then Login should be fail
 ```
 
 ### Escenario 3: Creación de Nuevo Empleado
