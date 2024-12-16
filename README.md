@@ -53,7 +53,7 @@ El objetivo de este desafío es automatizar el proceso de creación de un nuevo 
 
 ### Caso de Prueba 3: Creación de un Nuevo Empleado
 - **Descripción**: Validar que se puede crear un empleado ingresando datos completos.
-- **Técnica de diseño**: Análisis de valores límite.
+- **Técnica de diseño**: Análisis de valores límite. (Considerar los valores ingresados en nombre y apellidos no debe exceder los 30 caracteres)
 - **Pasos**:
   1. Navegar a la sección "PIM".
   2. Seleccionar "Add Employee".
